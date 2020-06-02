@@ -1,0 +1,19 @@
+{
+  "name": "pipebling_integration",
+  "version": "1.0.0",
+  "description": "Pipedrive and Bling integration",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StefanoMat/pipebling_integration.git"
+  },
+  "author": "Stefano Kaefer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StefanoMat/pipebling_integration/issues"
+  },
+  "homepage": "https://github.com/StefanoMat/pipebling_integration#readme"
+}
