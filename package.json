@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/StefanoMat/pipebling_integration#readme",
   "devDependencies": {
-    "git-commit-msg-linter": "^2.4.2"
+    "git-commit-msg-linter": "^2.4.2",
+    "nodemon": "^2.0.4"
   }
 }
