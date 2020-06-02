@@ -6,10 +6,10 @@ const makeSut = () => {
   return sut
 }
 describe('PipeDrive Request', () => {
-  test('Should throws if http throws ', async () => {
+  test('Should throws if axios throws ', async () => {
     const sut = makeSut()
     jest.spyOn(axios, 'get').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
-    const promise = sut.get('any_vale')
+    const promise = sut.get('any_value')
     await expect(promise).rejects.toThrow()
   })
 })
