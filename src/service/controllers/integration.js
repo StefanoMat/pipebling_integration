@@ -1,20 +1,30 @@
 const MissingParamError = require('../errors/missingParamError')
 
 class IntegrationController {
-  constructor (pipeDriveRequest) {
+  constructor (pipeDriveRequest, blingRequest) {
     this.pipeDriveRequest = pipeDriveRequest
+    this.blingRequest = blingRequest
   }
 
   async handle (httpRequest) {
-    const requireField = 'apiKey'
-    if (!httpRequest.body[requireField]) {
+    try {
+      const requiredFields = ['pipeDriveKey', 'blingKey']
+      for (const field of requiredFields) {
+        if (!httpRequest.body[field]) {
+          return {
+            statusCode: 400,
+            body: new MissingParamError(field)
+          }
+        }
+      }
+      const dataPipeDrive = this.pipeDriveRequest.get(httpRequest.body.pipeDriveKey)
+      const response = this.blingRequest.post(dataPipeDrive)
+    } catch (err) {
       return {
-        statusCode: 400,
-        body: new MissingParamError(requireField)
+        statusCode: 500,
+        body: new Error(err)
       }
     }
-
-    const dataPipeDrive = this.pipeDriveRequest.get(httpRequest.body.apiKey)
   }
 }
 module.exports = IntegrationController

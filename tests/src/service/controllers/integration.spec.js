@@ -9,32 +9,44 @@ const makePipeDriveRequest = () => {
   }
   return new PipeDriveRequest()
 }
+const makeBlingRequest = () => {
+  class BlingRequest {
+    async post (value) {
+      return new Promise(resolve => resolve('valid_apiKey'))
+    }
+  }
+  return new BlingRequest()
+}
 
 const makeSut = () => {
   const pipeDriveRequestStub = makePipeDriveRequest()
-  const sut = new IntegrationController(pipeDriveRequestStub)
+  const blingRequestStub = makeBlingRequest()
+  const sut = new IntegrationController(pipeDriveRequestStub, blingRequestStub)
   return {
     sut,
-    pipeDriveRequestStub
+    pipeDriveRequestStub,
+    blingRequestStub
   }
 }
 describe('IntegrationController', () => {
-  test('Should return 400 if no apiKey is provided', async () => {
+  test('Should return 400 if no pipeDriveKey is provided', async () => {
     const { sut } = makeSut()
     const httpRequest = {
       body: {
+        blingKey: 'api_key'
       }
     }
     const httpResponse = await sut.handle(httpRequest)
     expect(httpResponse.statusCode).toEqual(400)
-    expect(httpResponse.body).toEqual(new MissingParamError('apiKey'))
+    expect(httpResponse.body).toEqual(new MissingParamError('pipeDriveKey'))
   })
 
   test('Should calls pipeDriveRequest with correct apiKey', async () => {
     const { sut, pipeDriveRequestStub } = makeSut()
     const httpRequest = {
       body: {
-        apiKey: 'valid_apiKey'
+        pipeDriveKey: 'valid_apiKey',
+        blingKey: 'valid_apiKey'
       }
     }
     const pipeDriveRequestSpy = jest.spyOn(pipeDriveRequestStub, 'get')
