@@ -1,5 +1,5 @@
-const IntegrationController = require('../../../../src/presentation/controllers/integration')
-const MissingParamError = require('../../../../src/presentation/errors/missingParamError')
+const IntegrationController = require('../../../../src/service/controllers/integration')
+const MissingParamError = require('../../../../src/service/errors/missingParamError')
 
 const makeSut = () => {
   const sut = new IntegrationController()
