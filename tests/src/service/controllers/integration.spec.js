@@ -4,7 +4,7 @@ const MissingParamError = require('../../../../src/service/errors/missingParamEr
 const makePipeDriveRequest = () => {
   class PipeDriveRequest {
     async get (value) {
-      return new Promise(resolve => resolve('valid_apiKey'))
+      return new Promise(resolve => resolve('data'))
     }
   }
   return new PipeDriveRequest()
@@ -41,16 +41,41 @@ describe('IntegrationController', () => {
     expect(httpResponse.body).toEqual(new MissingParamError('pipeDriveKey'))
   })
 
+  test('Should return 400 if no blingKey is provided', async () => {
+    const { sut } = makeSut()
+    const httpRequest = {
+      body: {
+        pipeDriveKey: 'api_key'
+      }
+    }
+    const httpResponse = await sut.handle(httpRequest)
+    expect(httpResponse.statusCode).toEqual(400)
+    expect(httpResponse.body).toEqual(new MissingParamError('blingKey'))
+  })
+
   test('Should calls pipeDriveRequest with correct apiKey', async () => {
     const { sut, pipeDriveRequestStub } = makeSut()
     const httpRequest = {
       body: {
-        pipeDriveKey: 'valid_apiKey',
+        pipeDriveKey: 'valid_pipedrive_key',
         blingKey: 'valid_apiKey'
       }
     }
     const pipeDriveRequestSpy = jest.spyOn(pipeDriveRequestStub, 'get')
     await sut.handle(httpRequest)
-    expect(pipeDriveRequestSpy).toHaveBeenCalledWith('valid_apiKey')
+    expect(pipeDriveRequestSpy).toHaveBeenCalledWith('valid_pipedrive_key')
+  })
+
+  test('Should calls blingRequest with correct fields', async () => {
+    const { sut, blingRequestStub } = makeSut()
+    const httpRequest = {
+      body: {
+        pipeDriveKey: 'valid_apiKey',
+        blingKey: 'valid_bling_key'
+      }
+    }
+    const pipeDriveRequestSpy = jest.spyOn(blingRequestStub, 'post')
+    await sut.handle(httpRequest)
+    expect(pipeDriveRequestSpy).toHaveBeenCalledWith('data', 'valid_bling_key')
   })
 })
