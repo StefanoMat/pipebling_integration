@@ -8,17 +8,17 @@ This repository is created to develop a integration between Pipedrive and Bling!
 ## Rotas
 Na rota para efetuar a integração, envie um POST com o corpo JSON contendo "pipeDriveKey" e "blingKey" para ter acesso á suas contas para:
 ```
-v1/integration
+/v1/integration
 ```
 Na rota para capturar os regisros criados, envie um GET para:
 ```
-v1/deals
+/v1/deals
 ```
 
 
 ## Como iniciar?
 
-## Vár0iaveis de ambiente 
+## Variáveis de ambiente 
 configure o arquivo .ENV do root para apontar a porta para inciar um servidor Node e o host do MongoDB
 
 ## Crie o banco de dados
@@ -37,3 +37,9 @@ Rode os testes na pasta app/
 ```
 npm test
 ```
+
+## Design Patterns utilizados
+### Factory
+### Dependency Injection
+### Adapter
+### Decorator
