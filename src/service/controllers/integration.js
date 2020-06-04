@@ -18,7 +18,18 @@ class IntegrationController {
         }
       }
       const dataPipeDrive = await this.pipeDriveRequest.get(httpRequest.body.pipeDriveKey)
-      const response = this.blingRequest.post(dataPipeDrive, httpRequest.body.blingKey)
+      try {
+        await this.blingRequest.post(dataPipeDrive, httpRequest.body.blingKey)
+      } catch (err) {
+        return {
+          statusCode: 401,
+          body: new Error(JSON.stringify(err.response.data.retorno))
+        }
+      }
+      return {
+        statusCode: 200,
+        body: 'Integração concluída com sucesso!'
+      }
     } catch (err) {
       return {
         statusCode: 500,
