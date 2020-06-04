@@ -1,4 +1,4 @@
-# pipebling_integration
+# PipeBling Integration
 This repository is created to develop a integration between Pipedrive and Bling! with NodeJS
 
 ## Diferencias do PipeBling Integration
