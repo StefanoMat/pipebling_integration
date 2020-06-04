@@ -39,7 +39,7 @@ npm test
 ```
 
 ## Design Patterns utilizados
-### Factory
-### Dependency Injection
-### Adapter
-### Decorator
+### #Factory
+### #Dependency Injection
+### #Adapter
+### #Decorator
