@@ -1,6 +1,6 @@
 class Deal {
   constructor (orgObj) {
-    this.id = orgObj.id
+    this.deal_id = orgObj.id
     this.name = orgObj.name
     this.cnpj = orgObj.cnpj
     this.inscricaoEstdual = orgObj.inscricaoEstdual
@@ -12,6 +12,15 @@ class Deal {
     this.address_admin_area_level_2 = orgObj.address_admin_area_level_2
     this.cc_email = orgObj.cc_email
     this.itens = orgObj.itens
+    this.valor_total = this.sumValorTotal(this.itens)
+    this.created_at = new Date()
+  }
+
+  sumValorTotal (itens) {
+    const valorTotal = itens.reduce(function (val, item) {
+      return val + item.value
+    }, 0)
+    return valorTotal
   }
 }
 module.exports = Deal

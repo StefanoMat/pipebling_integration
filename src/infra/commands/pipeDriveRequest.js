@@ -69,8 +69,6 @@ class PipeDriveRequest {
       const deal = new Deal(orgObj)
       structuredDeals.push(deal)
     }
-
-    console.log(structuredDeals)
     return structuredDeals
   }
 }
