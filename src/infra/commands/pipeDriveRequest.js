@@ -24,6 +24,26 @@ class PipeDriveRequest {
     return response.data
   }
 
+  async getCustomFieldsOrganization (apiKey) {
+    const url = `https://linkapi-sandbox3.pipedrive.com/v1/organizationFields?api_token=${apiKey}`
+    const response = await axios.get(url)
+    const data = response.data.data
+    let cnpjKey = null
+    let ieKey = null
+    data.reduce(function (param, elem) {
+      if (elem.name === 'cnpj') {
+        cnpjKey = elem.key
+      }
+      if (elem.name === 'inscricao_estadual') {
+        ieKey = elem.key
+      }
+    })
+    return {
+      cnpj: cnpjKey,
+      inscricaoEstdual: ieKey
+    }
+  }
+
   makeStructuredDeal (deals, organizations, keyFields) {
     const structuredDeals = []
 
