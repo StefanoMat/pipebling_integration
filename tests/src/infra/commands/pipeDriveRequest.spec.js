@@ -18,10 +18,4 @@ describe('PipeDrive Request', () => {
     const promise = sut.get('any_value')
     await expect(promise).rejects.toThrow()
   })
-
-  test('Should return true if request success', async () => {
-    const sut = makeSut()
-    const promise = await sut.get('valid_pipedrive_key')
-    expect(promise).toEqual(true)
-  })
 })

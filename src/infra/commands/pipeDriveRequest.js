@@ -1,4 +1,5 @@
 const axios = require('axios')
+const Deal = require('../../domain/models/deal')
 
 class PipeDriveRequest {
   async get (apiKey) {
@@ -62,22 +63,14 @@ class PipeDriveRequest {
           dealsOfOrg.push(dealStructured)
         }
       }
-      const structured = {
-        id: orgObj.id,
-        name: orgObj.name,
-        cnpj: orgObj[keyFields.cnpj],
-        inscricaoEstdual: orgObj[keyFields.inscricaoEstdual],
-        address: orgObj.address_formatted_address,
-        address_street_number: orgObj.address_street_number,
-        address_sublocality: orgObj.address_sublocality,
-        address_postal_code: orgObj.address_postal_code,
-        address_admin_area_level_1: orgObj.address_admin_area_level_1,
-        address_admin_area_level_2: orgObj.address_admin_area_level_2,
-        cc_email: orgObj.cc_email,
-        itens: dealsOfOrg
-      }
-      structuredDeals.push(structured)
+      orgObj.cnpj = orgObj[keyFields.cnpj]
+      orgObj.inscricaoEstdual = orgObj[keyFields.inscricaoEstdual]
+      orgObj.itens = dealsOfOrg
+      const deal = new Deal(orgObj)
+      structuredDeals.push(deal)
     }
+
+    console.log(structuredDeals)
     return structuredDeals
   }
 }
