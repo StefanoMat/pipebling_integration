@@ -21,9 +21,10 @@ class IntegrationController {
       try {
         await this.blingRequest.post(dataPipeDrive, httpRequest.body.blingKey)
       } catch (err) {
+        console.log(err)
         return {
           statusCode: 401,
-          body: new Error(JSON.stringify(err.response.data.retorno))
+          body: new Error(JSON.stringify(err.response.data))
         }
       }
       return {
