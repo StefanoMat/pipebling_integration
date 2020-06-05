@@ -2,8 +2,8 @@
 This repository is created to develop a integration between Pipedrive and Bling! with NodeJS
 
 ## Diferencias do PipeBling Integration
-### Reconhece os campos CNPJ(cnpj) e Inscrição Estadual(inscricao_estadual) da organização do PipeDrive automagicamente. Para o Bling realizar verificações mais precisas do respectivo cliente
-### Retorna todas as oportundiades criadas agrupadas por dia e seu valor total
+### Reconhece os campos CNPJ(cnpj) e Inscrição Estadual(inscricao_estadual) da organização do PipeDrive automagicamente. Para o Bling realizar verificações mais precisas do respectivo pedido
+### Retorna todas as oportundiades criadas. Agrupadas por dia e valor total
 
 ## Rotas
 Na rota para efetuar a integração, envie um POST com o corpo JSON contendo "pipeDriveKey" e "blingKey" para ter acesso á suas contas para:
@@ -19,10 +19,10 @@ Na rota para capturar os regisros criados, envie um GET para:
 ## Como iniciar?
 
 ## Variáveis de ambiente 
-configure o arquivo .ENV do root para apontar a porta para inciar um servidor Node e o host do MongoDB
+configure o arquivo .ENV do root para apontar a porta do servidor Node e o host do MongoDB
 
 ## Crie o banco de dados
-Crie uma base com uma collection chamada 'deals'
+Crie uma base (padrão é: pipebling_integration) com uma collection chamada 'deals'
 
 ## Inicie o servidor
 ###  Para o back-end
