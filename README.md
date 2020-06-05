@@ -2,8 +2,8 @@
 This repository is created to develop a integration between Pipedrive and Bling! with NodeJS
 
 ## Diferencias do PipeBling Integration
-### Reconhece os campos CNPJ(cnpj) e Inscrição Estadual(inscricao_estadual) da organização do PipeDrive **automagicamente**. Para o Bling realizar verificações mais precisas do respectivo pedido.
-### Retorna todas as oportundiades criadas. Agrupadas por dia e valor total
+#Reconhece os campos CNPJ(cnpj) e Inscrição Estadual(inscricao_estadual) da organização do PipeDrive **automagicamente**. Para o Bling realizar verificações mais precisas do respectivo pedido.
+#Retorna todas as oportundiades criadas. Agrupadas por dia e valor total
 
 ## Rotas
 Na rota para efetuar a integração, envie um POST com o corpo JSON contendo "pipeDriveKey" e "blingKey" para ter acesso á suas contas para:
