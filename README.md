@@ -3,6 +3,7 @@ This repository is created to develop a integration between Pipedrive and Bling!
 
 ## Diferencias do PipeBling Integration
 >Reconhece **automagicamente** os campos customizados com o nome de **cnpj** e **inscricao_estadual** da organização do PipeDrive. Para o Bling realizar verificações mais precisas do respectivo pedido.
+
 >Retorna todas as oportundiades criadas. Agrupadas por dia e valor total
 
 ## Rotas
